@@ -1,0 +1,40 @@
+---
+title: "Hello"
+date: 2021-05-19T04:17:03-07:00
+draft: false
+---
+
+<p id="abc"></p>
+<script>
+$.ajax({
+    url: 'http://localhost:8000/api/home',
+    type: 'GET',
+    dataType: 'json',
+    success: function(response){
+        console.log(response['apis'][1])
+      
+        var len = 0;
+        if(response['apis'] != null){
+          len = response['apis'].length;
+        }
+        else(
+            alert(response.id)
+        )
+        if(len > 0){
+          // Read data and create <option >
+          for(var i=0; i<len; i++){
+
+            
+            var name = response['apis'][i].name;
+            console.log(name);
+            
+            document.getElementById("abc").innerHTML = name;
+           
+          }
+        }
+
+      }
+ });
+
+
+ </script>

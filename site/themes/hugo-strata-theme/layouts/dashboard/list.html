@@ -1,0 +1,92 @@
+{{ define "main" }}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>  
+<script>
+    var u_id;
+if(localStorage.getItem("gotrue.user")!=null){
+    login = localStorage.getItem("gotrue.user");
+    logins = JSON.parse(login);
+    
+    u_id = logins.id;
+    
+    console.log(logins)
+    
+}
+else{
+    window.location.href = "http://localhost:3000/products";
+
+}
+// u_id
+var ord = '';
+    $.ajax({
+    url: 'http://eratest.site:85/api/ECom/GetOrders?StartDate=2021-07-01&EndDate=2021-07-31&CustomerID='+u_id,
+    type: 'GET',
+    dataType: 'json',
+    success: function(response){
+ 
+      
+        var len = 0;
+        if(JSON.parse(response) != null){
+          len = JSON.parse(response).length;
+        }
+        else(
+            alert(JSON.parse(response).id)
+        )
+        if(len > 0){
+          // Read data and create <option >
+          for(var i=0; i<len; i++){
+              var datas= JSON.parse(response)[i];
+            //   console.log(datas)
+            ord += '<tr>';
+                ord += '<td>'+datas.ID + '</td>';
+  
+                ord += '<td>' +datas.status + '</td>';
+                    ord += '<td>'+moment(datas.date_created).format('DD-MM-YYYY')+ '</td>';
+                                ord += '<td><a href="http://localhost:3000/invoice/?orderid='+datas.ID+'" target="_blank" rel="noopener noreferrer">View</a></td>';
+                                
+                                
+                                $("#productorder tbody tr").remove(); 
+                              $('#productorder tbody').append(ord);
+  
+           
+            // document.getElementById("abc").innerHTML = name;
+           
+          }
+        }
+
+      }
+ });
+</script>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table" id="productorder">
+            <thead>
+                
+                <tr>
+                    <th>Order id</th>
+                    <th>Status</th>
+                    <th>Created_at</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td scope="row"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+</div>
+
+
+
+{{ end }}

@@ -1,0 +1,148 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="section pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 mb-4 mb-lg-0">
+        <!-- product image slider -->
+        <div class="product-slider">
+          {{ range .Params.Images }}
+          <div data-image="{{ .image | absURL }}">
+            <script>document.write('<img class="img-fluid w-100" src="{{ .image | absURL }}" alt="{{ .Title }}">')</script><
+ 
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      <div class="col-lg-5 offset-lg-1">
+        <h4 class="font-weight-medium">{{ .Title }}</h4>
+        <!-- rating star -->
+        {{ if site.Params.rating.enable }}
+        <div class="rw-ui-container"></div>
+        {{ end }}
+        <div class="my-4">
+          {{ if .Params.PriceBefore }}
+          <s>{{ site.Params.currencySymbol }}{{ .Params.PriceBefore }}</s>
+          {{ end }}
+          <span class="lead text-primary font-weight-medium">{{ site.Params.currencySymbol }}{{ .Params.Price }}</span>
+        </div>
+        <h5>Short Description</h5>
+        <p>{{ .Params.ShortDescription | markdownify }}</p>
+      
+
+
+        <button class="btn btn-primary" id="modalActivate"  data-toggle="modal" data-target="#exampleModalPreview" data-item-id="{{ .Params.ProductID }}"
+        data-item-name="{{ .Title }}" {{ range first 1 .Params.Images }} data-item-image="{{ .image | absURL }}"
+        {{ end }} data-item-price="{{ .Params.Price }}" id="add_to_cart" data-item-url="{{ .Permalink }}"
+        data-item-description="{{ .Description }}"
+        onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
+        ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1)">
+        Add to cart
+      </button>
+      </div>
+      <div class="col-12 mt-5">
+        <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
+          <li class="nav-item mr-3">
+            <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab"
+              aria-controls="description" aria-selected="true">Description</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
+              aria-selected="false">Reviews</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+            <div class="content">{{ .Content }}</div>
+          </div>
+          <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+            {{ template "_internal/disqus.html" . }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  var toprice=0;
+  function Check(id, title, dec, price,img,qty) {
+
+  
+const oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
+const idToUse = id;
+const existingItem = oldItems.find(({ id }) => id === idToUse);
+if (existingItem) {
+  Object.assign(existingItem, {
+    'name': title,
+    'quantity': existingItem.quantity + qty,
+    'price': price,
+    'dec': dec,
+    'img': img,
+  })
+} else {
+  const newItem = {
+    'id' : idToUse,
+    'name': title,
+    'quantity': qty,
+    'price': price,
+    'dec': dec,
+    'img': img,
+  };
+  oldItems.push(newItem);
+}
+
+localStorage.setItem('itemsArray', JSON.stringify(oldItems));
+items = localStorage.getItem("itemsArray");
+    json = JSON.parse(items);
+    var count =0;
+    toprice =0;
+    var student = '';
+    for (i = 0; i < json.length; i++) {
+      // console.log(json[i]);
+      count++;
+      student += '<tr>';
+                            student += '<td> <img src="'+json[i].img+'" style="width:50px;height:50px;" />' + '</td>';
+  
+                            student += '<td>' + 
+                              json[i].name + '</td>';
+  
+                            student += '<td>' + 
+                              json[i].dec + '</td>';
+  
+                              student += '<td>' + 
+                              '<input type="number" class="form-control text-center" value="'+json[i].quantity+'"></td>';
+                              
+
+                            student += '<td>' + 
+                              json[i].price * json[i].quantity+ '</td>';
+
+                              var price = parseInt(json[i].price * json[i].quantity)
+                              toprice = parseInt(toprice+price);
+
+
+
+                              student += '<td>' + 
+                              ' <button class="btn btn-danger btn-sm" onclick="add_delete('+json[i].id+',this)"><i class="fa fa-trash-o"></i></button></td>';
+
+                              
+                              $("#data_cart_footer tr").remove(); 
+                              $('#data_cart_footer').append(student);
+
+    };
+    fottor = '<tfoot><tr class="visible-xs"><td class="text-center"><strong>Total '+toprice+'</strong></td></tr><tr><td><a href="#" class="btn btn-warning"  class="close " data-dismiss="modal" aria-label="Close"><i class="fa fa-angle-left"></i> Continue Shopping</a></td><td colspan="2" class="hidden-xs"></td><td class="hidden-xs text-center"><strong>Total '+toprice+'</strong></td><td><a href="#" class="btn btn-success btn-block" onClick="checkoutbtc();">Checkout <i class="fa fa-angle-right"></i></a></td></tr></tfoot>';
+
+    $('#data_cart_footer').append(fottor);
+    $("#p_count").text(count);
+  }
+</script>
+
+
+{{ partial "cta.html" . }}
+
+{{ end }}

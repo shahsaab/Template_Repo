@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!-- saved from url=(0113)https://hopeful-brahmagupta-efe289.netlify.app/products/taba-cream.2/#/order/658c8be3-c12f-436b-b548-d47870dcd3ec -->
+<html lang="en" class="snipcart-cart--opened">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Invoice</title>
+
+  <!-- Mobile Responsive Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="For Glowing Skin">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Hugo 0.75.1">
+
+  <!-- Plugins -->
+  <!-- Snipcart -->
+  <link rel="stylesheet" href="https://practical-feynman-7d28d4.netlify.app/snipcart.css">
+  </script>
+
+  <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>  
+</head>
+
+<body>
+
+  <script>
+    var orderid;
+    var u_id;
+    var email;
+if(localStorage.getItem("gotrue.user")!=null){
+    login = localStorage.getItem("gotrue.user");
+    logins = JSON.parse(login);
+    
+    u_id = logins.id;
+    email = logins.email;
+    console.log(logins)
+    
+}
+else{
+    window.location.href = "http://localhost:3000/products";
+
+}
+
+  </script>
+  
+  <!-- Snipcart -->
+  <div id="snipcart" class="snipcart">
+    <div class="snipcart-modal__container snipcart-layout--large snipcart-cart__order-container">
+      <div class="snipcart-layout snipcart-modal">
+          <a href="http://localhost:3000/products/">
+        <header class="snipcart-cart-header snipcart-checkout__header"><button
+            class="snipcart-cart-header__close-button snipcart-modal__close"><svg viewBox="0 0 64 64" fill="none"
+              xmlns="http://www.w3.org/2000/svg" alt="" title=""
+              class="snipcart-modal__close-icon snipcart__icon--blue-light snipcart__icon">
+              <path d="M12.636 30.158H58v3.423H12.372l9.148 9.055L19.132 45 6 32l13.132-13 2.388 2.364-8.884 8.794z"
+                fill="#313749"></path>
+            </svg><span class="snipcart-modal__close-title snipcart__font--std"> Continue shopping </span></button>
+          <!---->
+          <div class="snipcart-cart-header__options">
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+          </div>
+          <!---->
+        </header>
+    </a>
+        <div class="snipcart-layout__content">
+          <div>
+            <div class="snipcart-order__details">
+              <div class="snipcart__box snipcart-order__box snipcart-order__box__header">
+                <div class="snipcart__box--title">
+                  <div
+                    class="snipcart__box--badge snipcart__box--badge snipcart__box--badge-highlight snipcart__font--bold snipcart__font--secondary">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title=""
+                      class="snipcart__icon--white snipcart__icon--large snipcart__icon">
+                      <path d="M16.773 24.21l-4.554-4.472L11 20.933l5.773 5.667L29 14.595 27.781 13.4 16.773 24.21z"
+                        fill="url(#paint0_linear)"></path>
+                      <defs>
+                        <lineargradient id="paint0_linear" x1="11" y1="19.138" x2="29" y2="19.138"
+                          gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#5082E4"></stop>
+                          <stop offset="1" stop-color="#52BCF8"></stop>
+                        </lineargradient>
+                      </defs>
+                    </svg>
+                  </div>
+                  <div>
+                    <h1 class="snipcart__font--subtitle">Thank you for your order</h1>
+                    
+                  </div>
+                </div>
+                <div class="snipcart-order__invoice-number"> Order date : <p
+                  class="snipcart-order__invoice-number--highlight snipcart__font--black snipcart__font--secondary" id="orderdate"></p><br>
+                  </div>
+                <div class="snipcart-order__invoice-number"> Invoice number : <p
+                    class="snipcart-order__invoice-number--highlight snipcart__font--black snipcart__font--secondary" id="innoooo"></p><br>
+                    </div>
+                   
+              </div>
+              <div class="snipcart-order__details__content">
+                <div class="snipcart__box snipcart-order__box">
+                  <div class="snipcart-order__details-title snipcart__box--subtitle"><svg viewBox="0 0 64 64"
+                      fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title=""
+                      class="snipcart__icon--left snipcart__icon--blue-dark snipcart__icon">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M51.714 20.47L55 60H9l3.286-39.53h9.857v-6.588C22.143 8.424 26.556 4 32 4c5.444 0 9.857 4.424 9.857 9.882v6.589h9.857zM25.43 13.883v16.47h-3.286v-6.587h-6.834l-2.737 32.94h38.856l-2.737-32.94h-6.834v6.588h-3.286v-16.47c0-3.634-2.947-6.589-6.571-6.589-3.624 0-6.571 2.955-6.571 6.588zm3.285 9.883V20.47h6.572v3.294h-6.572z"
+                        fill="#313749"></path>
+                    </svg>
+                    <h1 class="snipcart__font--subtitle">Cart summary</h1>
+                  </div>
+                  <div id="orderproduct">
+                  
+                    
+                </div>
+                </div>
+                <div
+                  class="snipcart__box snipcart-billing-completed snipcart-billing-completed--titled snipcart-order__box">
+                  <div class="snipcart-billing-completed__header snipcart__box--header">
+                    <div class="snipcart__box--title">
+                      <!---->
+                      <h1 class="snipcart-billing-completed__title snipcart__font--subtitle"><svg viewBox="0 0 64 64"
+                          fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title=""
+                          class="snipcart__icon--left snipcart__icon--blue-dark snipcart__icon">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M19.609 57c-2.131 0-4.107-.888-5.562-2.499-1.543-1.707-2.268-4.023-1.988-6.342l.856-7.167c.487-4.11 2.666-7.791 5.985-10.095l1.753 2.454c-2.609 1.812-4.329 4.725-4.715 7.989l-.859 7.17a5.074 5.074 0 001.242 3.999c.868.96 2.037 1.491 3.288 1.491H45.39c1.251 0 2.42-.531 3.288-1.491a5.074 5.074 0 001.242-3.999l-.855-7.167c-.39-3.267-2.107-6.177-4.72-7.992l1.754-2.454c3.319 2.307 5.501 5.988 5.989 10.098l.852 7.164c.28 2.319-.445 4.635-1.988 6.342C49.501 56.112 47.523 57 45.391 57H19.61zM18.8 19.5c0-7.443 6.147-13.5 13.7-13.5C40.054 6 46.2 12.057 46.2 19.5S40.053 33 32.5 33c-7.552 0-13.699-6.057-13.699-13.5zm3.045 0c0 5.79 4.78 10.5 10.655 10.5 5.875 0 10.655-4.71 10.655-10.5S38.376 9 32.5 9c-5.876 0-10.655 4.71-10.655 10.5z"
+                            fill="#313749"></path>
+                        </svg> Billing </h1>
+                    </div>
+                    <!---->
+                  </div>
+                  <div class="snipcart-checkout-step__cols snipcart__font--std">
+                    <div class="snipcart-checkout-step__col">
+                      <div class="snipcart-checkout-step__icon snipcart-billing-completed__step-icon"><svg
+                          viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title=""
+                          class="snipcart__icon--blue-dark snipcart__icon">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M19.609 57c-2.131 0-4.107-.888-5.562-2.499-1.543-1.707-2.268-4.023-1.988-6.342l.856-7.167c.487-4.11 2.666-7.791 5.985-10.095l1.753 2.454c-2.609 1.812-4.329 4.725-4.715 7.989l-.859 7.17a5.074 5.074 0 001.242 3.999c.868.96 2.037 1.491 3.288 1.491H45.39c1.251 0 2.42-.531 3.288-1.491a5.074 5.074 0 001.242-3.999l-.855-7.167c-.39-3.267-2.107-6.177-4.72-7.992l1.754-2.454c3.319 2.307 5.501 5.988 5.989 10.098l.852 7.164c.28 2.319-.445 4.635-1.988 6.342C49.501 56.112 47.523 57 45.391 57H19.61zM18.8 19.5c0-7.443 6.147-13.5 13.7-13.5C40.054 6 46.2 12.057 46.2 19.5S40.053 33 32.5 33c-7.552 0-13.699-6.057-13.699-13.5zm3.045 0c0 5.79 4.78 10.5 10.655 10.5 5.875 0 10.655-4.71 10.655-10.5S38.376 9 32.5 9c-5.876 0-10.655 4.71-10.655 10.5z"
+                            fill="#313749"></path>
+                        </svg></div>
+                      <div>
+                        <h3
+                          class="snipcart-billing-completed__step-title snipcart__font--secondary snipcart__font--bold">
+                          Customer information</h3><span
+                          class="snipcart-billing-completed__information snipcart__font--std"><p id="name"></p><br><p id="emails"></p></span>
+                      </div>
+                    </div>
+                    <div class="snipcart-checkout-step__col">
+                      <div class="snipcart-checkout-step__icon snipcart-billing-completed__step-icon"><svg
+                          viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title=""
+                          class="snipcart__icon--blue-dark snipcart__icon">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M15 24.573C15 14.868 22.835 7 32.5 7S50 14.868 50 24.573C50 40.687 32.5 56 32.5 56S15 40.687 15 24.573zm31.95 0c0-8.003-6.484-14.51-14.45-14.51-7.966 0-14.45 6.507-14.45 14.51 0 11.438 10.061 22.79 14.447 27.2 4.386-4.415 14.453-15.796 14.453-27.2zm-20.55.802c0-3.381 2.733-6.125 6.1-6.125 3.367 0 6.1 2.744 6.1 6.125S35.867 31.5 32.5 31.5c-3.367 0-6.1-2.744-6.1-6.125zm9.15 0a3.057 3.057 0 00-3.05-3.063 3.057 3.057 0 00-3.05 3.063 3.057 3.057 0 003.05 3.063 3.057 3.057 0 003.05-3.063z"
+                            fill="#313749"></path>
+                        </svg></div>
+                      <div>
+                        <h3
+                          class="snipcart-billing-completed__step-title snipcart__font--secondary snipcart__font--bold">
+                          Billing address</h3><span class="snipcart-billing-completed__information snipcart__font--std" id="address"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---->
+                <div class="snipcart__box snipcart-order__box">
+                  <div class="snipcart-order__title snipcart__box--subtitle"><svg viewBox="0 0 64 64" fill="none"
+                      xmlns="http://www.w3.org/2000/svg" alt="" title=""
+                      class="snipcart__icon--left snipcart__icon--blue-dark snipcart__icon" width="17" height="16">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M55.658 14C58.055 14 60 15.911 60 18.27v28.46c0 2.36-1.945 4.27-4.342 4.27H9.342C6.944 51 5 49.089 5 46.73V18.27C5 15.91 6.944 14 9.342 14h46.316zm1.447 32.73V18.27c0-.786-.65-1.424-1.447-1.424H9.342c-.799 0-1.447.638-1.447 1.423v28.462c0 .785.648 1.423 1.447 1.423h46.316c.797 0 1.447-.638 1.447-1.423zM12.237 31.078c-.8 0-1.447-.636-1.447-1.423v-5.692c0-.787.646-1.424 1.447-1.424H26.71c.8 0 1.448.637 1.448 1.424v5.692c0 .787-.649 1.423-1.448 1.423H12.237zm5.79 7.827c.798 0 1.447.636 1.447 1.423v1.423c0 .787-.649 1.423-1.448 1.423h-5.79c-.8 0-1.447-.636-1.447-1.423v-1.423c0-.787.647-1.423 1.448-1.423h5.79zm11.578 0c.8 0 1.448.636 1.448 1.423v1.423c0 .787-.649 1.423-1.448 1.423h-5.79c-.8 0-1.447-.636-1.447-1.423v-1.423c0-.787.647-1.423 1.448-1.423h5.79zm11.58 0c.798 0 1.447.636 1.447 1.423v1.423c0 .787-.649 1.423-1.448 1.423h-5.79c-.8 0-1.447-.636-1.447-1.423v-1.423c0-.787.647-1.423 1.448-1.423h5.79zm11.578 0c.8 0 1.448.636 1.448 1.423v1.423c0 .787-.649 1.423-1.448 1.423h-5.79c-.8 0-1.447-.636-1.447-1.423v-1.423c0-.787.647-1.423 1.448-1.423h5.79z"
+                        fill="#313749"></path>
+                    </svg>
+                    <h1 class="snipcart__font--subtitle">Payment</h1>
+                  </div>
+                  <div class="snipcart__box--content">
+                    <h3 class="snipcart-order__step-title snipcart__font--secondary snipcart__font--bold"> Pay later
+                    </h3>
+                    <!---->
+                  </div>
+                </div>
+                <footer class="snipcart__box snipcart-order__box snipcart-order__footer">
+                  <div class="snipcart-cart-summary-fees snipcart-order__fees">
+                    <!---->
+                    <div class="snipcart-cart-summary-fees">
+                      <!---->
+                      <div class="snipcart-cart-summary-fees__item snipcart__font--slim"><span
+                          class="snipcart-cart-summary-fees__title">Subtotal</span><span
+                          class="snipcart-cart-summary-fees__amount" id="subtotal"></span></div>
+                      
+                          <div class="snipcart-cart-summary-fees__item snipcart__font--slim"><span
+                            class="snipcart-cart-summary-fees__title">Delivery charges</span><span
+                            class="snipcart-cart-summary-fees__amount" id="delivery_charges"></span></div>
+                      <!---->
+                      <!---->
+                      <div
+                        class="snipcart-cart-summary-fees__item snipcart-cart-summary-fees__total snipcart__font--bold snipcart__font--secondary">
+                        <span
+                          class="snipcart-cart-summary-fees__title snipcart-cart-summary-fees__title--highlight snipcart__font--large">Total</span><span
+                          class="snipcart-cart-summary-fees__amount snipcart-cart-summary-fees__amount--highlight snipcart__font--large" id="pricetotal"></span>
+                      </div>
+                    </div>
+                  </div>
+                </footer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  var username;
+  var address;
+  var city;
+  var province;
+   
+</script>
+
+
+
+
+
+
+
+<script>
+    
+    var url_string = window.location.href
+var url = new URL(url_string);
+var orderid = url.searchParams.get("orderid");
+console.log(orderid);
+// document.getElementById('inno').innerText = 'abc';
+// $("#inno").append('abc');
+$("#emails").append(email);
+$("#innoooo").append("&nbsp;"+orderid);
+
+
+
+// + orderid
+// ,'+datas[0].Shipping_State+'
+var ord = '';
+toprice = 0;
+    $.ajax({
+    url: 'http://eratest.site:85/api/ECom/GetOrdersDetail?EOrderID='+orderid,
+    type: 'GET',
+    dataType: 'json',
+    success: function(response){
+      console.log(JSON.parse(response))
+      var datas = JSON.parse(response).Table;
+      // console.log(datas[0]);
+      $("#name").append(datas[0].Shipping_Name);
+      var charges = datas[0].Delivery_Charges;
+      $("#address").append(datas[0].Shipping_Address+','+datas[0].Shipping_City+','+datas[0].Shipping_Country);
+      $('#orderdate').append("&nbsp;"+moment(datas[0].CreatedAt).format('DD-MM-YYYY'))
+        var productdats = JSON.parse(response).Table1;
+      // console.log(productdats)
+        var len = 0;
+        if(productdats != null){
+          len = productdats.length;
+        }
+        else(
+            alert(response.id)
+        )
+        if(len > 0){
+           
+          for(var i=0; i<len; i++){
+
+            fottor = '<ul class="snipcart-cart-summary-items-list snipcart-scrollbar"><li class="snipcart-cart-summary-expanded-item"><div><span class="snipcart-cart-summary-expanded-item__name snipcart__font--secondary snipcart__font--regular">'+productdats[i].Name+'</span><ul class="snipcart-cart-summary-expanded-item__custom-fields"></ul></div><div class="snipcart-cart-summary-expanded-item--secondary snipcart-cart-summary-expanded-item__quantity">Qty: '+productdats[i].quantity+' </div><div class="snipcart-cart-summary-expanded-item--secondary snipcart-cart-summary-expanded-item__price snipcart__font--secondary snipcart__font--bold">PKR&nbsp;'+productdats[i].price+' </div></li></ul>';
+
+                $('#orderproduct').append(fottor);
+                var price = parseInt(productdats[i].price * productdats[i].quantity)
+                toprice = parseInt(toprice + price);
+                // alert(price)
+            
+            // document.getElementById("abc").innerHTML = name;
+           
+          }
+          
+          $("#subtotal").append('PKR&nbsp;' + toprice);
+            $("#pricetotal").append('PKR&nbsp;' + parseInt(charges+toprice));
+            $("#delivery_charges").append('PKR&nbsp;' + charges);
+            
+        }
+
+      }
+ });
+
+</script>
+<script src="email.js"></script>
+</html>

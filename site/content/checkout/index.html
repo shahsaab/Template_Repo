@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="Ljkj3ISBTcKIysa2bgR9KWK7chTcmX49gXuQ6Zat">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> 
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+
+<body>
+    <style>
+    .toast {
+        font-size: 14px
+    }
+    
+    
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/toasty.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/toasty.js"></script>
+
+    
+    
+  
+
+    
+
+
+    <script>
+        var getipaddress;
+        function getIP(json) {
+            getipaddress= json.ip;
+        //   alert("My public IP address is: " + json.ip);
+        }
+        </script>
+        <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+    <script type="text/javascript">
+
+
+
+
+
+
+var id;
+var u_id;
+    var email;
+if(localStorage.getItem("gotrue.user")!=null){
+    login = localStorage.getItem("gotrue.user");
+    logins = JSON.parse(login);
+    
+    u_id = logins.id;
+    email = logins.email;
+    console.log(logins)
+    
+}
+else{
+    window.location.href = "http://localhost:3000/products";
+
+}
+
+var ouuid;
+function generateUUID() { // Public Domain/MIT
+    var d = new Date().getTime();//Timestamp
+    var d2 = (performance && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16;//random number between 0 and 16
+        if(d > 0){//Use timestamp until depleted
+            r = (d + r)%16 | 0;
+            d = Math.floor(d/16);
+        } else {//Use microseconds since page-load if supported
+            r = (d2 + r)%16 | 0;
+            d2 = Math.floor(d2/16);
+        }
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+}
+        window.onload = function () {
+            ouuid = generateUUID();
+       
+            
+            console.log(ouuid);
+            callcity()
+            load()
+        }
+
+
+        function sendEmail() {
+	Email.send({
+	Host: "smtp.gmail.com",
+	Username : "amofficial888@gmail.com",
+	Password : "ovzkgghbuqsfpgqb",
+	To : 'ahmed1701f@gmail.com',
+	From : "amofficial888@gmail.com",
+	Subject : "Check mail  ",
+	Body : "<h1 style='text-align:center;color:blue;'>Hello World</h1>",
+	}).then(
+		message => alert("mail sent successfully")
+	);
+}
+        function load()
+        {
+            if(localStorage.getItem("itemsArray")!=null){
+            items = localStorage.getItem("itemsArray");
+            json = JSON.parse(items);
+            var count = 0;
+            toprice = 0;
+            var student = '';
+            for (i = 0; i < json.length; i++) {
+                // console.log(json[i]);
+                count++;
+                fottor = '<div class="row item"><div class="col-4 align-self-center"><img class="img-fluid" src="' + json[i].img + '"></div><div class="col-8"><div class="row"><b>' + json[i].price + '</b></div><div class="row text-muted">' +
+                    json[i].name + '</div><div class="row">Qty: ' + json[i].quantity + '</div></div></div>';
+
+                $('#tablaa').append(fottor);
+
+                var price = parseInt(json[i].price * json[i].quantity)
+                toprice = parseInt(toprice + price);
+            };
+            $("#count").text(count + ' items');
+            $("#subtotle").text(toprice);
+            $("#sutotle").text(toprice);
+        }
+else{
+        $("#count").text(0 + ' items');
+            $("#subtotle").text(0);
+            $("#sutotle").text(0);
+    $("#tablaa").remove(); 
+}
+
+        }
+        
+    function adddata() {
+            var Line_Items = [];
+            totalamounts=0;
+            items = localStorage.getItem("itemsArray");
+                    json = JSON.parse(items);
+                    for (i = 0; i < json.length; i++) {
+                        var p_name = json[i].name;
+                        var p_id = json[i].id;
+                        var qty = json[i].quantity;
+                        var price = json[i].price;
+                        var img = json[i].img;
+                        Line_Items.push({
+                            product_id : json[i].id,
+                            product_page : 'hello',
+                            price : json[i].price,
+                            quantity  : json[i].quantity,
+                            tax : 0,
+                            discount : 0,
+                            total : parseInt(json[i].price*json[i].quantity),
+                    });
+
+                    totalamounts = parseInt(totalamounts+json[i].price*json[i].quantity);
+                    }
+
+// alert(totalamounts)
+
+            var token = $('meta[name="csrf-token"]').attr('content');
+          var name=  document.getElementById("name").value;
+        //    var emai= 
+           var address=  document.getElementById("address").value;
+           var city=   document.getElementById("cityidset").value;
+    
+           var devlirychar=  document.getElementById("deliveypriceset").value;
+           var country=  document.getElementById("country").value;
+           var province=  document.getElementById("province").value;
+           var phone=  document.getElementById("phone").value;
+           var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+var useragent = navigator.appName;
+
+var Shipping;
+if($('#shippingtrue').is(":checked")) 
+                {  
+                    
+
+           var s_name=  document.getElementById("s_name").value;
+           var s_city=  document.getElementById("cityidset").value;
+           var s_country=  document.getElementById("s_country").value;
+           var s_province=  document.getElementById("s_province").value;
+           var s_address=  document.getElementById("s_address").value;
+                    Shipping= {
+                    'name' :s_name,
+                    'address' :s_address,
+                    'city' :s_city,
+                    'state' :s_province,
+                    'country' :s_country
+                }
+                                $("#shippinghidediv").show();
+                }
+                            else
+                            {
+                            Shipping= {
+                            'name' :name,
+                            'address' :address,
+                            'city' :city,
+                            'state' :'',
+                            'country' :country
+                        }
+                            
+                            $("#shippinghidediv").hide();
+                            }
+
+
+// alert(useragent)
+           eOrderInput = {
+            'order_key' :ouuid,
+            "date_created": yyyy + '-' + mm + '-' + dd,
+                    "date_modified": yyyy + '-' + mm + '-' + dd,
+                    'created_via' : 'ecommerce',
+                    'discount_total' :0,
+                    'tax' :0,
+                    'delivery_charges' :devlirychar,
+                    'total':parseInt(totalamounts+devlirychar),
+                    'customer_id' :u_id,
+                    'customer_ip_address' :''+getipaddress,
+                    'customer_user_agent' :useragent,
+                    'customer_note' :'dasd',
+                    'payment_method' :'cash',
+                    'transaction_id' :'1001',
+                    'date_paid' : yyyy + '-' + mm + '-' + dd,
+                    'status' :'pending',
+                    
+                Billing: {
+                    'name' :name,
+                    'address' :address,
+                    'city' :city,
+                    'state' :'',
+                    'country' :country,
+                    'email' :email,
+                    'phone' :phone,
+                },
+                
+                'Shipping': Shipping,
+                'Line_Items':Line_Items,
+                
+                
+                };
+               
+              
+                // console.log(JSON.stringify(eOrderInput));
+            $.ajax({
+                url: "http://eratest.site:85/api/ecom/OrderCreated",
+                method: "POST",
+                data: JSON.stringify(eOrderInput),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (dataResult) {
+                    var id = dataResult;
+                    // alert(dataResult)
+                    console.log(dataResult);
+                    
+               
+                }
+            });
+        }
+    </script>
+    <script>
+        $.ajax({
+            url: 'http://localhost:8000/api/userdata/'+u_id,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response){
+                console.log(response['apis'][0].name)
+              
+                var len = 0;
+                if(response['apis'] != null){
+                  len = response['apis'].length;
+                }
+                else(
+                    alert(response.id)
+                )
+                if(len > 0){
+                
+                }
+                document.getElementById("name").value = response['apis'][0].name;
+                document.getElementById("address").value = response['apis'][0].address;
+                document.getElementById("city").value = response['apis'][0].city;
+                document.getElementById("country").value = response['apis'][0].country;
+                document.getElementById("province").value = response['apis'][0].province;
+        
+              }
+         });
+    </script>
+    
+    <div class="card">
+        <div class="card-top border-bottom text-center"> <a href="/products"> Back to shop</a> <span
+                id="logo">Billing</span></div>
+        <div class="card-body">
+            <!-- <div class="row upper"> <span><i class="fa fa-check-circle-o"></i> Shopping bag</span> <span><i class="fa fa-check-circle-o"></i> Order details</span> <span id="payment"><span id="three">3</span>Payment</span> </div> -->
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="left border">
+                        <div class="row"> <span class="header">Billing</span>
+                            <div class="icons"> </div>
+                        </div>
+                        
+                        <input id="uuid" hidden>
+                        <span>Full name:</span>
+                        <input placeholder="Linda Williams" id="name">
+                        <span>Email:</span>
+                        <input placeholder="abc@gmail.com" id="emai" disabled>
+                        <span>Phone:</span>
+                        <input placeholder="+92" id="phone">
+                        <span>Billing address:</span>
+                        <input placeholder="" id="address">
+                        <span>City:</span>
+                        <br>
+                      
+                        <select id="citys" onchange="onchacity()" class="form-control getcitys">
+                            <option disabled selected>selete city</option>
+                        </select>
+                        <script>
+                            function callcity(){
+ var Line_data = [];
+    $.ajax({
+    url: 'http://eratest.site:85/api/Ecom/GetManageDelivery',
+    type: 'GET',
+    dataType: 'json',
+    success: function(response){
+      var datas = JSON.parse(response);
+      console.log(datas)
+        var len = 0;
+        if(datas != null){
+          len = datas.length;
+        }
+        else(
+            alert(response.id)
+        )
+        if(len > 0){
+           
+          for(var i=0; i<len; i++){
+            
+            fottor = '<option data-cityid="'+datas[i].CityID+'" data-miniorder="'+datas[i].MinimumOrderAmount+'" data-price="'+datas[i].Charges+'">'+datas[i].Name+'</option>';
+
+                $('.getcitys').append(fottor);        
+          }
+          
+            }
+
+      }
+ });
+}
+function onchacity()
+{
+    $('#sutotle').text(parseInt($('#sutotle').text())-parseInt($('#deliveypriceset').val()))
+
+if($('#shippingtrue').is(":checked")) {  
+    if($('#s_citys :selected').data("miniorder") !=null)
+    {
+    if (parseInt($('#s_citys :selected').data("miniorder")) <= parseInt($('#subtotle').text())) {
+    $('#delivery_price').text(0); 
+    $('#deliveypriceset').val(0);
+    $('#cityidset').val($('#s_citys :selected').data("cityid"));
+    }
+    else{
+    $('#delivery_price').text(parseInt($('#s_citys :selected').data("price"))); 
+    $('#deliveypriceset').val(parseInt($('#s_citys :selected').data("price")));
+    $('#cityidset').val($('#s_citys :selected').data("cityid"));
+    var options = {
+    autoClose: true,
+    progressBar: true,
+    enableSounds: true,
+    sounds: {
+    
+        success: "https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233524/success.mp3",
+   
+    },
+    };
+var toast = new Toasty(options);
+    toast.configure(options);
+    
+toast.success("Avail free delivery on orders above: Rs. "+parseInt($('#citys :selected').data("miniorder")));
+}
+}
+else{
+    $('#delivery_price').text(parseInt($('#s_citys :selected').data("price"))); 
+    $('#deliveypriceset').val(parseInt($('#s_citys :selected').data("price")));
+    $('#cityidset').val($('#s_citys :selected').data("cityid"));
+    // $('#sutotle').text(parseInt($('#sutotle').text())+parseInt($('#deliveypriceset').val()))
+}
+
+                        
+}
+
+
+
+else{
+    if($('#citys :selected').data("miniorder") !=null)
+    {
+    if (parseInt($('#citys :selected').data("miniorder")) <= parseInt($('#subtotle').text())) {
+    $('#delivery_price').text(0); 
+    $('#deliveypriceset').val(0);
+    $('#cityidset').val($('#citys :selected').data("cityid"));
+    }
+    else{
+    $('#delivery_price').text(parseInt($('#citys :selected').data("price"))); 
+    $('#deliveypriceset').val(parseInt($('#citys :selected').data("price")));
+    $('#cityidset').val($('#citys :selected').data("cityid"));
+    var options = {
+    autoClose: true,
+    progressBar: true,
+    enableSounds: true,
+    sounds: {
+    
+        success: "https://res.cloudinary.com/dxfq3iotg/video/upload/v1557233524/success.mp3",
+   
+    },
+    };
+var toast = new Toasty(options);
+    toast.configure(options);
+    
+toast.success("Avail free delivery on orders above: Rs. "+parseInt($('#citys :selected').data("miniorder")));
+    }
+}
+    else{
+ $('#delivery_price').text(parseInt($('#citys :selected').data("price"))); 
+    $('#deliveypriceset').val(parseInt($('#citys :selected').data("price")));
+    $('#cityidset').val($('#citys :selected').data("cityid"));
+}                 
+}
+
+$('#sutotle').text(parseInt($('#sutotle').text())+parseInt($('#deliveypriceset').val()))
+
+    // delivery_price
+}
+                            
+</script>
+                        </script>
+                        <input type="hidden" id="deliveypriceset" value="0">
+                        <input type="hidden" id="cityidset" value="0">
+                        <span hidden>Country:</span>
+                        <input placeholder="" id="country" value="Pakistan" hidden>
+                        <span hidden>Province/State:</span>
+                        <input placeholder="" id="province" value="null" hidden>
+                        <label><input type="checkbox" onchange="valueChanged()" id="shippingtrue"> Ship to a different address?</label>
+                        
+                        <div id="shippinghidediv" style="display: none;">
+                        <span>Full name:</span>
+                        <input placeholder="" id="s_name">
+                        <span>Shipping address:</span>
+                        <input placeholder="" id="s_address">
+                        <span>City:</span>
+                        <br>
+                      
+                        <select id="s_citys" onchange="onchacity()" class="form-control getcitys">
+                            <option disabled selected data-cityid="0" data-miniorder="0" data-price="0">selete city</option>
+                        </select>
+                        <span hidden>Country:</span>
+                        <input placeholder="" id="s_country" value="Pakistan" hidden>
+                        <span hidden>Province/State:</span>
+                        <input placeholder="" id="s_province" value="" hidden>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        function valueChanged()
+                        {
+                            $('#sutotle').text(parseInt($('#sutotle').text())-parseInt($('#deliveypriceset').val()))
+                            if($('#shippingtrue').is(":checked")) 
+                            {  
+                                $("#shippinghidediv").show();
+                                if($('#s_citys :selected').data("miniorder") !=null)
+    {
+    if (parseInt($('#s_citys :selected').data("miniorder")) <= parseInt($('#subtotle').text())) {
+    $('#delivery_price').text(0); 
+    $('#deliveypriceset').val(0);
+    $('#cityidset').val($('#s_citys :selected').data("cityid"));
+    }
+    else{
+    $('#delivery_price').text(parseInt($('#s_citys :selected').data("price"))); 
+    $('#deliveypriceset').val(parseInt($('#s_citys :selected').data("price")));
+    $('#cityidset').val($('#s_citys :selected').data("cityid"));
+}
+}
+else{
+    $('#delivery_price').text(parseInt($('#s_citys :selected').data("price"))); 
+    $('#deliveypriceset').val(parseInt($('#s_citys :selected').data("price")));
+    $('#cityidset').val($('#s_citys :selected').data("cityid"));
+    // $('#sutotle').text(parseInt($('#sutotle').text())+parseInt($('#deliveypriceset').val()))
+}
+}
+                            else
+                            {
+                                $("#shippinghidediv").hide();
+                                if($('#citys :selected').data("miniorder") !=null)
+    {
+    if (parseInt($('#citys :selected').data("miniorder")) <= parseInt($('#subtotle').text())) {
+    $('#delivery_price').text(0); 
+    $('#deliveypriceset').val(0);
+    $('#cityidset').val($('#citys :selected').data("cityid"));
+    }
+    else{
+    $('#delivery_price').text(parseInt($('#citys :selected').data("price"))); 
+    $('#deliveypriceset').val(parseInt($('#citys :selected').data("price")));
+    $('#cityidset').val($('#citys :selected').data("cityid"));
+   
+    }
+}
+    else{
+ $('#delivery_price').text(parseInt($('#citys :selected').data("price"))); 
+    $('#deliveypriceset').val(parseInt($('#citys :selected').data("price")));
+    $('#cityidset').val($('#citys :selected').data("cityid"));
+} 
+                            }
+                            $('#sutotle').text(parseInt($('#sutotle').text())+parseInt($('#deliveypriceset').val()))
+
+                        }
+                        
+                    </script>
+                </div>
+                <div class="col-md-5">
+                    <div class="right border">
+                        <div class="header">Order Summary</div>
+                        <p>
+                        <p id="count"></p>
+                        </p>
+                        <div id="tablaa"></div>
+                        <hr>
+                        <div class="row lower">
+                            <div class="col text-left">Subtotal</div>
+                            <div class="col text-right">Rs: <span id="subtotle"></span></div>
+                        </div>
+                        <div class="row lower">
+                            <div class="col text-left">Delivery</div>
+                            <div class="col text-right" id="delivery_price">0</div>
+                        </div>
+                        <div class="row lower">
+                            <div class="col text-left"><b>Total to pay</b></div>
+                            <div class="col text-right">Rs: <span id="sutotle"></span><b></b></div>
+                        </div>
+                        <button class="btn" onclick="adddata()">Place order</button>
+                        <p class="text-muted text-center">Complimentary Shipping & Returns</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div> </div>
+    </div>
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(0, 0, 34);
+            font-size: 0.8rem
+        }
+
+        .card {
+            max-width: 1000px;
+            margin: 2vh
+        }
+
+        .card-top {
+            padding: 0.7rem 5rem
+        }
+
+        .card-top a {
+            float: left;
+            margin-top: 0.7rem
+        }
+
+        #logo {
+            font-family: 'Dancing Script';
+            font-weight: bold;
+            font-size: 1.6rem
+        }
+
+        .card-body {
+            padding: 0 5rem 5rem 5rem;
+            background-image: url("https://i.imgur.com/4bg1e6u.jpg");
+            background-size: cover;
+            background-repeat: no-repeat
+        }
+
+        @media(max-width:768px) {
+            .card-body {
+                padding: 0 1rem 1rem 1rem;
+                background-image: url("https://i.imgur.com/4bg1e6u.jpg");
+                background-size: cover;
+                background-repeat: no-repeat
+            }
+
+            .card-top {
+                padding: 0.7rem 1rem
+            }
+        }
+
+        .row {
+            margin: 0
+        }
+
+        .upper {
+            padding: 1rem 0;
+            justify-content: space-evenly
+        }
+
+        #three {
+            border-radius: 1rem;
+            width: 22px;
+            height: 22px;
+            margin-right: 3px;
+            border: 1px solid blue;
+            text-align: center;
+            display: inline-block
+        }
+
+        #payment {
+            margin: 0;
+            color: blue
+        }
+
+        .icons {
+            margin-left: auto
+        }
+
+        form span {
+            color: rgb(179, 179, 179)
+        }
+
+        form {
+            padding: 2vh 0
+        }
+
+        input {
+            border: 1px solid rgba(0, 0, 0, 0.137);
+            padding: 1vh;
+            margin-bottom: 4vh;
+            outline: none;
+            width: 100%;
+            background-color: rgb(247, 247, 247)
+        }
+
+        input:focus::-webkit-input-placeholder {
+            color: transparent
+        }
+
+        .header {
+            font-size: 1.5rem
+        }
+
+        .left {
+            background-color: #ffffff;
+            padding: 2vh
+        }
+
+        .left img {
+            width: 2rem
+        }
+
+        .left .col-4 {
+            padding-left: 0
+        }
+
+        .right .item {
+            padding: 0.3rem 0
+        }
+
+        .right {
+            background-color: #ffffff;
+            padding: 2vh
+        }
+
+        .col-8 {
+            padding: 0 1vh
+        }
+
+        .lower {
+            line-height: 2
+        }
+
+        .btn {
+            background-color: rgb(23, 4, 189);
+            border-color: rgb(23, 4, 189);
+            color: white;
+            width: 100%;
+            font-size: 0.7rem;
+            margin: 4vh 0 1.5vh 0;
+            padding: 1.5vh;
+            border-radius: 0
+        }
+
+        .btn:focus {
+            box-shadow: none;
+            outline: none;
+            box-shadow: none;
+            color: white;
+            -webkit-box-shadow: none;
+            -webkit-user-select: none;
+            transition: none
+        }
+
+        .btn:hover {
+            color: white
+        }
+
+        a {
+            color: black
+        }
+
+        a:hover {
+            color: black;
+            text-decoration: none
+        }
+
+        input[type=checkbox] {
+            width: unset;
+            margin-bottom: unset
+        }
+
+        #cvv {
+            background-image: linear-gradient(to left, rgba(255, 255, 255, 0.575), rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
+            background-repeat: no-repeat;
+            background-position-x: 95%;
+            background-position-y: center
+        }
+
+        #cvv:hover {}
+    </style>
+
+<script>
+    document.getElementById("emai").value = email;
+</script>
+
+
+  
