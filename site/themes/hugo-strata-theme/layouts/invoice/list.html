@@ -15,59 +15,39 @@
 
   <!-- Plugins -->
   <!-- Snipcart -->
-  <link rel="stylesheet" href="https://practical-feynman-7d28d4.netlify.app/snipcart.css">
+  <link rel="stylesheet" href="/snipcart.css">
   </script>
 
   <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 </head>
 
 <body>
-
-  <script>
-    var orderid;
-    var u_id;
-    var email;
-if(localStorage.getItem("gotrue.user")!=null){
-    login = localStorage.getItem("gotrue.user");
-    logins = JSON.parse(login);
-    
-    u_id = logins.id;
-    email = logins.email;
-    console.log(logins)
-    
-}
-else{
-    window.location.href = "http://localhost:3000/products";
-
-}
-
-  </script>
-  
   <!-- Snipcart -->
   <div id="snipcart" class="snipcart">
     <div class="snipcart-modal__container snipcart-layout--large snipcart-cart__order-container">
       <div class="snipcart-layout snipcart-modal">
-          <a href="http://localhost:3000/products/">
-        <header class="snipcart-cart-header snipcart-checkout__header"><button
-            class="snipcart-cart-header__close-button snipcart-modal__close"><svg viewBox="0 0 64 64" fill="none"
-              xmlns="http://www.w3.org/2000/svg" alt="" title=""
-              class="snipcart-modal__close-icon snipcart__icon--blue-light snipcart__icon">
-              <path d="M12.636 30.158H58v3.423H12.372l9.148 9.055L19.132 45 6 32l13.132-13 2.388 2.364-8.884 8.794z"
-                fill="#313749"></path>
-            </svg><span class="snipcart-modal__close-title snipcart__font--std"> Continue shopping </span></button>
-          <!---->
-          <div class="snipcart-cart-header__options">
+
+        <a href="#" onclick="backproductpage()">
+          <header class="snipcart-cart-header snipcart-checkout__header"><button
+              class="snipcart-cart-header__close-button snipcart-modal__close"><svg viewBox="0 0 64 64" fill="none"
+                xmlns="http://www.w3.org/2000/svg" alt="" title=""
+                class="snipcart-modal__close-icon snipcart__icon--blue-light snipcart__icon">
+                <path d="M12.636 30.158H58v3.423H12.372l9.148 9.055L19.132 45 6 32l13.132-13 2.388 2.364-8.884 8.794z"
+                  fill="#313749"></path>
+              </svg><span class="snipcart-modal__close-title snipcart__font--std"> Continue shopping </span></button>
             <!---->
+            <div class="snipcart-cart-header__options">
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            </div>
             <!---->
-            <!---->
-            <!---->
-          </div>
-          <!---->
-        </header>
-    </a>
+          </header>
+        </a>
         <div class="snipcart-layout__content">
           <div>
             <div class="snipcart-order__details">
@@ -90,33 +70,21 @@ else{
                   </div>
                   <div>
                     <h1 class="snipcart__font--subtitle">Thank you for your order</h1>
-                    
+
                   </div>
                 </div>
                 <div class="snipcart-order__invoice-number"> Order date : <p
-                  class="snipcart-order__invoice-number--highlight snipcart__font--black snipcart__font--secondary" id="orderdate"></p><br>
-                  </div>
+                    class="snipcart-order__invoice-number--highlight snipcart__font--black snipcart__font--secondary"
+                    id="orderdate"></p><br>
+                </div>
                 <div class="snipcart-order__invoice-number"> Invoice number : <p
-                    class="snipcart-order__invoice-number--highlight snipcart__font--black snipcart__font--secondary" id="innoooo"></p><br>
-                    </div>
-                   
+                    class="snipcart-order__invoice-number--highlight snipcart__font--black snipcart__font--secondary"
+                    id="innoooo"></p><br>
+                </div>
+
               </div>
               <div class="snipcart-order__details__content">
-                <div class="snipcart__box snipcart-order__box">
-                  <div class="snipcart-order__details-title snipcart__box--subtitle"><svg viewBox="0 0 64 64"
-                      fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title=""
-                      class="snipcart__icon--left snipcart__icon--blue-dark snipcart__icon">
-                      <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M51.714 20.47L55 60H9l3.286-39.53h9.857v-6.588C22.143 8.424 26.556 4 32 4c5.444 0 9.857 4.424 9.857 9.882v6.589h9.857zM25.43 13.883v16.47h-3.286v-6.587h-6.834l-2.737 32.94h38.856l-2.737-32.94h-6.834v6.588h-3.286v-16.47c0-3.634-2.947-6.589-6.571-6.589-3.624 0-6.571 2.955-6.571 6.588zm3.285 9.883V20.47h6.572v3.294h-6.572z"
-                        fill="#313749"></path>
-                    </svg>
-                    <h1 class="snipcart__font--subtitle">Cart summary</h1>
-                  </div>
-                  <div id="orderproduct">
-                  
-                    
-                </div>
-                </div>
+
                 <div
                   class="snipcart__box snipcart-billing-completed snipcart-billing-completed--titled snipcart-order__box">
                   <div class="snipcart-billing-completed__header snipcart__box--header">
@@ -145,28 +113,61 @@ else{
                         <h3
                           class="snipcart-billing-completed__step-title snipcart__font--secondary snipcart__font--bold">
                           Customer information</h3><span
-                          class="snipcart-billing-completed__information snipcart__font--std"><p id="name"></p><br><p id="emails"></p></span>
+                          class="snipcart-billing-completed__information snipcart__font--std">
+                          <p id="name"></p><br>
+                          <p id="emails"></p>
+                          <br>
+                          <p id="phonenumberid"></p>
+                        </span>
                       </div>
                     </div>
-                    <div class="snipcart-checkout-step__col">
-                      <div class="snipcart-checkout-step__icon snipcart-billing-completed__step-icon"><svg
-                          viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title=""
-                          class="snipcart__icon--blue-dark snipcart__icon">
-                          <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M15 24.573C15 14.868 22.835 7 32.5 7S50 14.868 50 24.573C50 40.687 32.5 56 32.5 56S15 40.687 15 24.573zm31.95 0c0-8.003-6.484-14.51-14.45-14.51-7.966 0-14.45 6.507-14.45 14.51 0 11.438 10.061 22.79 14.447 27.2 4.386-4.415 14.453-15.796 14.453-27.2zm-20.55.802c0-3.381 2.733-6.125 6.1-6.125 3.367 0 6.1 2.744 6.1 6.125S35.867 31.5 32.5 31.5c-3.367 0-6.1-2.744-6.1-6.125zm9.15 0a3.057 3.057 0 00-3.05-3.063 3.057 3.057 0 00-3.05 3.063 3.057 3.057 0 003.05 3.063 3.057 3.057 0 003.05-3.063z"
-                            fill="#313749"></path>
-                        </svg></div>
-                      <div>
-                        <h3
-                          class="snipcart-billing-completed__step-title snipcart__font--secondary snipcart__font--bold">
-                          Billing address</h3><span class="snipcart-billing-completed__information snipcart__font--std" id="address"></span>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
                 <!---->
                 <div class="snipcart__box snipcart-order__box">
-                  <div class="snipcart-order__title snipcart__box--subtitle"><svg viewBox="0 0 64 64" fill="none"
+                  
+                  <div class="snipcart__box--content">
+                   
+                    <h3 class="snipcart-order__step-title snipcart__font--secondary snipcart__font--std">
+                      <div>
+                      
+                      <span class="snipcart-billing-completed__information snipcart__font--bold">
+                        <span id="changesaddressnames">
+                          Billing address</span>
+                        <br><br> 
+                        
+                        </span>
+                      <h3
+                        class="snipcart-billing-completed__step-title snipcart__font--secondary snipcart__font--std"
+                        id="">
+                      </h3><span class="snipcart-billing-completed__information snipcart__font--std"
+                        id="address"></span>
+                    </div>
+                    </h3>
+                    <!---->
+                  </div>
+                  
+                </div>
+                <div class="snipcart__box snipcart-order__box">
+                  <div class="snipcart-order__details-title snipcart__box--subtitle"><svg viewBox="0 0 64 64"
+                      fill="none" xmlns="http://www.w3.org/2000/svg" alt="" title=""
+                      class="snipcart__icon--left snipcart__icon--blue-dark snipcart__icon">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M51.714 20.47L55 60H9l3.286-39.53h9.857v-6.588C22.143 8.424 26.556 4 32 4c5.444 0 9.857 4.424 9.857 9.882v6.589h9.857zM25.43 13.883v16.47h-3.286v-6.587h-6.834l-2.737 32.94h38.856l-2.737-32.94h-6.834v6.588h-3.286v-16.47c0-3.634-2.947-6.589-6.571-6.589-3.624 0-6.571 2.955-6.571 6.588zm3.285 9.883V20.47h6.572v3.294h-6.572z"
+                        fill="#313749"></path>
+                    </svg>
+                    <h1 class="snipcart__font--subtitle">Cart summary</h1>
+                  </div>
+                  <div id="orderproduct">
+
+
+                  </div>
+                </div>
+                <footer class="snipcart__box snipcart-order__box snipcart-order__footer">
+                  
+                  <div class="snipcart-cart-summary-fees snipcart-order__fees">
+                    <div class="snipcart-order__title snipcart__box--subtitle"><svg viewBox="0 0 64 64" fill="none"
                       xmlns="http://www.w3.org/2000/svg" alt="" title=""
                       class="snipcart__icon--left snipcart__icon--blue-dark snipcart__icon" width="17" height="16">
                       <path fill-rule="evenodd" clip-rule="evenodd"
@@ -176,30 +177,28 @@ else{
                     <h1 class="snipcart__font--subtitle">Payment</h1>
                   </div>
                   <div class="snipcart__box--content">
-                    <h3 class="snipcart-order__step-title snipcart__font--secondary snipcart__font--bold"> Pay later
+                    <h3 class="snipcart-order__step-title snipcart__font--secondary snipcart__font--bold"> Cash on delivery
                     </h3>
                     <!---->
                   </div>
-                </div>
-                <footer class="snipcart__box snipcart-order__box snipcart-order__footer">
-                  <div class="snipcart-cart-summary-fees snipcart-order__fees">
                     <!---->
                     <div class="snipcart-cart-summary-fees">
                       <!---->
                       <div class="snipcart-cart-summary-fees__item snipcart__font--slim"><span
                           class="snipcart-cart-summary-fees__title">Subtotal</span><span
                           class="snipcart-cart-summary-fees__amount" id="subtotal"></span></div>
-                      
-                          <div class="snipcart-cart-summary-fees__item snipcart__font--slim"><span
-                            class="snipcart-cart-summary-fees__title">Delivery charges</span><span
-                            class="snipcart-cart-summary-fees__amount" id="delivery_charges"></span></div>
+
+                      <div class="snipcart-cart-summary-fees__item snipcart__font--slim"><span
+                          class="snipcart-cart-summary-fees__title">Delivery charges</span><span
+                          class="snipcart-cart-summary-fees__amount" id="delivery_charges"></span></div>
                       <!---->
                       <!---->
                       <div
                         class="snipcart-cart-summary-fees__item snipcart-cart-summary-fees__total snipcart__font--bold snipcart__font--secondary">
                         <span
                           class="snipcart-cart-summary-fees__title snipcart-cart-summary-fees__title--highlight snipcart__font--large">Total</span><span
-                          class="snipcart-cart-summary-fees__amount snipcart-cart-summary-fees__amount--highlight snipcart__font--large" id="pricetotal"></span>
+                          class="snipcart-cart-summary-fees__amount snipcart-cart-summary-fees__amount--highlight snipcart__font--large"
+                          id="pricetotal"></span>
                       </div>
                     </div>
                   </div>
@@ -213,82 +212,15 @@ else{
   </div>
 </body>
 
-<script>
-  var username;
-  var address;
-  var city;
-  var province;
-   
-</script>
 
 
 
 
 
 
+<script type="text/javascript" src="/javascript/config.js"></script>
+<script type="text/javascript" src="/plugins/jQuery/crypto-js.min.js"></script>
+<script src="/Controllers/invoiceController.js"></script>
+<script type="text/javascript" src="/routes/web.js"></script>
 
-<script>
-    
-    var url_string = window.location.href
-var url = new URL(url_string);
-var orderid = url.searchParams.get("orderid");
-console.log(orderid);
-// document.getElementById('inno').innerText = 'abc';
-// $("#inno").append('abc');
-$("#emails").append(email);
-$("#innoooo").append("&nbsp;"+orderid);
-
-
-
-// + orderid
-// ,'+datas[0].Shipping_State+'
-var ord = '';
-toprice = 0;
-    $.ajax({
-    url: 'http://eratest.site:85/api/ECom/GetOrdersDetail?EOrderID='+orderid,
-    type: 'GET',
-    dataType: 'json',
-    success: function(response){
-      console.log(JSON.parse(response))
-      var datas = JSON.parse(response).Table;
-      // console.log(datas[0]);
-      $("#name").append(datas[0].Shipping_Name);
-      var charges = datas[0].Delivery_Charges;
-      $("#address").append(datas[0].Shipping_Address+','+datas[0].Shipping_City+','+datas[0].Shipping_Country);
-      $('#orderdate').append("&nbsp;"+moment(datas[0].CreatedAt).format('DD-MM-YYYY'))
-        var productdats = JSON.parse(response).Table1;
-      // console.log(productdats)
-        var len = 0;
-        if(productdats != null){
-          len = productdats.length;
-        }
-        else(
-            alert(response.id)
-        )
-        if(len > 0){
-           
-          for(var i=0; i<len; i++){
-
-            fottor = '<ul class="snipcart-cart-summary-items-list snipcart-scrollbar"><li class="snipcart-cart-summary-expanded-item"><div><span class="snipcart-cart-summary-expanded-item__name snipcart__font--secondary snipcart__font--regular">'+productdats[i].Name+'</span><ul class="snipcart-cart-summary-expanded-item__custom-fields"></ul></div><div class="snipcart-cart-summary-expanded-item--secondary snipcart-cart-summary-expanded-item__quantity">Qty: '+productdats[i].quantity+' </div><div class="snipcart-cart-summary-expanded-item--secondary snipcart-cart-summary-expanded-item__price snipcart__font--secondary snipcart__font--bold">PKR&nbsp;'+productdats[i].price+' </div></li></ul>';
-
-                $('#orderproduct').append(fottor);
-                var price = parseInt(productdats[i].price * productdats[i].quantity)
-                toprice = parseInt(toprice + price);
-                // alert(price)
-            
-            // document.getElementById("abc").innerHTML = name;
-           
-          }
-          
-          $("#subtotal").append('PKR&nbsp;' + toprice);
-            $("#pricetotal").append('PKR&nbsp;' + parseInt(charges+toprice));
-            $("#delivery_charges").append('PKR&nbsp;' + charges);
-            
-        }
-
-      }
- });
-
-</script>
-<script src="email.js"></script>
 </html>

@@ -1,7 +1,7 @@
 ######################## default configuration ####################
 baseURL = "/"
 languageCode = "en"
-title = "Hargo | Hugo Ecommerce Site"
+title = ""
 theme = "hugo-strata-theme"
 summaryLength = "20"
 paginate = 10
@@ -17,6 +17,7 @@ disqusShortname = ""
   link = "plugins/slick/slick.css"
   [[params.plugins.css]]
   link = "plugins/themify-icons/themify-icons.css"
+  
 
   # JS Plugins
   [[params.plugins.js]]
@@ -27,51 +28,44 @@ disqusShortname = ""
   link = "plugins/slick/slick.min.js"
   [[params.plugins.js]]
   link = "plugins/google-map/gmap.js"
+  [[params.plugins.js]]
+  link = "plugins/jQuery/crypto-js.min.js"
+    [[params.plugins.js]]
+  link = "javascript/config.js"
+  [[params.plugins.js]]
+  link = "routes/web.js"
+
 
 
 ############################## navigation ###############################
 [menu]
 
-  [[menu.main]]
-  name = "Products"
-  URL = "products"
-  weight = 1
 
-  [[menu.main]]
-  name = "Blog"
-  URL = "blog"
-  weight = 2
-
-  [[menu.main]]
-  name = "FAQ"
-  URL = "faq"
-  weight = 3
 
   [[menu.main]]
   name = "Contact"
   URL = "contact"
   weight = 4
 
+  [[menu.main]]
+  name = "Dashboard"
+  URL = "dashboard"
+  weight = 4
+  
+  
+  [[menu.main]]
+  name = "Tracker"
+  URL = "tracker"
+  weight = 4
+
+
   ############# footer menu #############
-  [[menu.footer]]
-  name = "Products"
-  URL = "products"
+   [[menu.footer]]
+  name = "Home"
+  URL = "/"
   weight = 1
 
-  [[menu.footer]]
-  name = "Blog"
-  URL = "blog"
-  weight = 2
 
-  [[menu.footer]]
-  name = "FAQ"
-  URL = "faq"
-  weight = 3
-
-  [[menu.footer]]
-  name = "Terms & Conditions"
-  URL = "terms-conditions"
-  weight = 4
 
   [[menu.footer]]
   name = "Contact"
@@ -81,6 +75,7 @@ disqusShortname = ""
 
 #################### default parameters ################################
 [params]
+
 logo = "images/logo.png"
 home = "Home"
 # Meta data
@@ -94,13 +89,12 @@ mapMarker = "images/marker.png"
 # Google Analitycs
 googleAnalitycsID = "" # Your ID
 # Contact Information
-mobile = "0124857985320"
-email = "demo@email.com"
-location = "Dhaka, Bangladedsh"
+# mobile = "0124857985320"
+# email = "demo@email.com"
+# location = "Dhaka, Bangladedsh"
 # copyright
 copyright = "| Copyright &copy; 2019 [Gethugothemes](https://gethugothemes.com) All Rights Reserved |"
-# Snipcart Credentials
-snipcartApiKey = "ODAzMDZhNzItMDZjZS00ZDcyLWI4NWItYWJlNmFmNDRiMTA5NjM3NTc1MzI4NTgzNDAxMjI2"
+
 currencySymbol = "$"
 
   # Preloader
@@ -119,22 +113,32 @@ currencySymbol = "$"
   [[params.social]]
   icon = "ti-facebook"
   link = "#"
+  id= "facebook"
+  itemid= "itemfb"
 
   [[params.social]]
   icon = "ti-twitter-alt"
   link = "#"
+  id= "twitter"
+  itemid= "itemtw"
 
   [[params.social]]
   icon = "ti-youtube"
   link = "#"
+  id= "youtube"
+  itemid= "itemyt"
 
   [[params.social]]
   icon = "ti-instagram"
   link = "#"
-
+  id= "instagram"
+  itemid= "iteminta"
+  
   [[params.social]]
   icon = "ti-pinterest"
   link = "#"
+  id= "pinterest"
+  itemid= "itempt"
 
   # Contact Form
   [params.contact]

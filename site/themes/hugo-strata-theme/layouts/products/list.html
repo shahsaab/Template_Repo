@@ -1,6 +1,13 @@
 {{ define "main" }}
 
 {{ partial "page-title.html" . }}
+<script>
+ $(document).ready(function () {
+    window.location.href = window.location.origin;
+
+ })
+</script>
+
 
 <section class="section pt-0">
   <div class="container">
@@ -55,19 +62,24 @@
             <p>{{ .Params.Description }}</p>
             <p class="mb-4">
               {{ if .Params.PriceBefore }}
-              <s>{{ site.Params.currencySymbol }}{{ .Params.PriceBefore }}</s>
+              <s>PKR {{ .Params.PriceBefore }}</s>
               {{ end }}
-              <span class="lead text-primary">{{ site.Params.currencySymbol }}{{ .Params.Price }}</span>
+              <span class="lead text-primary">PKR {{ .Params.Price }}</span>
             </p>
-          
-            <button class="btn btn-sm btn-outline-primary" id="modalActivate"  data-toggle="modal" data-target="#exampleModalPreview" data-item-id="{{ .Params.ProductID }}"
-              data-item-name="{{ .Title }}" {{ range first 1 .Params.Images }} data-item-image="{{ .image | absURL }}"
-              {{ end }} data-item-price="{{ .Params.Price }}" id="add_to_cart" data-item-url="{{ .Permalink }}"
-              data-item-description="{{ .Description }}"
-              onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
-              ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1)" title=" {{ site.Params.currencySymbol }}{{ .Params.Price }} ">
-              Add to cart
+        
+                <button class="btn btn-sm btn-outline-primary" id="modalActivate"  data-toggle="modal" data-target="#exampleModalPreview" data-item-id="{{ .Params.ProductID }}"
+                data-item-name="{{ .Title }}" {{ range first 1 .Params.Images }} data-item-image="{{ .image | absURL }}"
+                {{ end }} data-item-price="{{ .Params.Price }}" id="add_to_cart" data-item-url="{{ .Permalink }}"
+                data-item-description="{{ .Description }}"
+                onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
+                ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1)" title=" {{ site.Params.currencySymbol }}{{ .Params.Price }} ">
+                Add to cart
+              </button>
+              <button class="btn btn-sm btn-outline-primary">
+                <i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 20px;"></i>
             </button>
+              
+            
           </div>
         </div>
       </div>
@@ -137,9 +149,10 @@ items = localStorage.getItem("itemsArray");
 
 
 
-                              student += '<td>' + 
-                              ' <button class="btn btn-danger btn-sm" onclick="add_delete('+json[i].id+',this)"><i class="fa fa-trash-o"></i></button></td>';
-
+                             student += '<td>' + 
+                              '<button class="btn btn-danger btn-sm" onclick="add_delete('+
+                              "'"+json[i].id+"'"
+                              +',this)"><i class="fa fa-trash-o"></i></button></td>';
                               
                               $("#data_cart_footer tr").remove(); 
                               $('#data_cart_footer').append(student);

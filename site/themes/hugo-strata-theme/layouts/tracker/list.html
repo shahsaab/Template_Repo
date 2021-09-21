@@ -2,85 +2,8 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>  
+<script src="/Controllers/trackerController.js"></script>
 
-<script>
-
-
-
-function track(){
-    var ord = '';
-    var pro = '';
-    trackids=document.getElementById("trackid").value
-    $.ajax({
-    url: 'http://eratest.site:85/api/ECom/GetOrdersDetail?EOrderID=' + trackids,
-    type: 'GET',
-    dataType: 'json',
-    success: function(response){
-      thead = ''
-      var datas = JSON.parse(response).Table;
-        // console.log(datas[0].Status)
-      
-        ord += '<tr>';
-                ord += '<td>'+trackids+'</td>';
-  
-                ord += '<td>' + datas[0].Status + '</td>';
-                    ord += '<td>' + moment(datas[0].CreatedAt).format('DD-MM-YYYY') + '</td>';
-                    ord += '<td><label><input type="checkbox" id="viewdetails" onchange="valueChanged()"> View details</label></td>';
-                               
-                              
-                                $('#tabrownode tr').remove(); 
-                              $('#tabrownode').append(thead,ord);
-  
-        var productdatas = JSON.parse(response).Table1;
-        console.log(productdatas[0])
-        var len = 0;
-        if(productdatas != null){
-          len = productdatas.length;
-        }
-        else(
-            alert(productdatas.id)
-        )
-        if(len > 0){
-          pro += '<tr>';
-            pro += '<th>Name</th>';
-            pro += '<th>Price</th>';
-            pro += '<th>Quantity</th>';
-            pro += '<th>Total amount</th>';
-          for(var i=0; i<len; i++){
-            pro += '<tr>';
-              pro += '<td>'+productdatas[i].Name+'</td>';
-  
-              pro += '<td>Rs: ' + productdatas[i].price + '</td>';
-              pro += '<td>' + productdatas[i].quantity + '</td>';
-              pro += '<td>Rs:' + productdatas[i].price*productdatas[i].quantity + '</td>';
-                               
-                              
-                                $('#hidetable tr').remove(); 
-                              $('#hidetable').append(thead,pro);
-  
-            
-            // var name = response['track'][i];
-            // console.log(name);
-            
-            // document.getElementById("abc").innerHTML = name;
-           
-          }
-        }
-
-      }
- });
-}
-
-</script>
-<script type="text/javascript">
-  function valueChanged()
-  {
-      if($('#viewdetails').is(":checked"))   
-          $("#hidetable").show();
-      else
-          $("#hidetable").hide();
-  }
-</script>
 <div class="container">
 
     <div class="row">
@@ -107,8 +30,10 @@ function track(){
           <thead>
             <tr>
               <th>Order id</th>
+              <th>Total amount</th>
+              <th>City</th>
               <th>Status</th>
-              <th>Created_at</th>
+              <th>Order date</th>
               <th>Control</th>
             </tr>
           </thead>

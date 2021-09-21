@@ -1,6 +1,6 @@
 <head>
   <meta charset="UTF-8">
-  <title>{{ .Title }}</title>
+  <title id="titlesnameallow">{{ .Title }}</title>
 
   {{ "<!-- Mobile Responsive Meta -->" | safeHTML }}
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,13 +13,7 @@
   <link rel="stylesheet" href="{{ .link | absURL }}">
   {{ end }}
 
-  {{ with site.Params.snipcartApiKey }}
-  {{ "<!-- Snipcart -->" | safeHTML }}
-  <link rel="preconnect" href="https://app.snipcart.com/">
-  <link rel="preconnect" href="https://cdn.snipcart.com/">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.28/default/snipcart.css">
-  <script async src="https://cdn.snipcart.com/themes/v3.0.28/default/snipcart.js"></script>
-  {{ end }}
+
 
   {{ "<!-- Main Stylesheet -->" | safeHTML }}
   {{ $styles := resources.Get "scss/style.scss" | toCSS | minify }}
@@ -32,4 +26,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <!-- include the widget -->
    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> 
-</head>
+  
+   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/toasty.css" rel="stylesheet" />
+  </head>

@@ -1,70 +1,5 @@
 {{ "<!-- navigation -->" | safeHTML }}
 
-<script type = "text/javascript">
-// Get the current user:
-const user = netlifyIdentity.currentUser();  
-// var json=null;
-
-
-// const idToUse = id;
-function checkoutbtc()
-{
-if(localStorage.getItem("gotrue.user")!=null){
-  window.location.href = "http://localhost:3000/checkout";
-
-}
-else{
-  $('#exampleModalPreview').modal('hide');
-  account()
-}
-}
-
-  window.onload = function(){  
-   
-items = localStorage.getItem("itemsArray");
-    json = JSON.parse(items);
-    var count =0;
-    toprice =0;
-    var student = '';
-    for (i = 0; i < json.length; i++) {
-      // console.log(json[i]);
-      count++;
-      student += '<tr>';
-                            student += '<td> <img src="'+json[i].img+'" style="width:50px;height:50px;" />' + '</td>';
-  
-                            student += '<td>' + 
-                              json[i].name + '</td>';
-  
-                            student += '<td>' + 
-                              json[i].dec + '</td>';
-  
-                              student += '<td>' + 
-                              '<input type="number" class="form-control text-center"readonly value="'+json[i].quantity+'"></td>';
-                              
-
-                            student += '<td>' + 
-                              json[i].price * json[i].quantity+ '</td>';
-
-                              var price = parseInt(json[i].price * json[i].quantity)
-                              toprice = parseInt(toprice+price);
-
-
-
-                              student += '<td>' + 
-                              ' <button class="btn btn-danger btn-sm" onclick="add_delete('+json[i].id+',this)"><i class="fa fa-trash-o"></i></button></td>';
-
-                              
-                              $("#data_cart_footer tr").remove(); 
-                              $('#data_cart_footer').append(student);
-
-    };
-    fottor = '<tfoot><tr class="visible-xs"><td class="text-center"><strong>Total '+toprice+'</strong></td></tr><tr><td><a href="#" class="btn btn-warning" class="close " data-dismiss="modal" aria-label="Close"><i class="fa fa-angle-left"></i> Continue Shopping</a></td><td colspan="2" class="hidden-xs"></td><td class="hidden-xs text-center"><strong>Total '+toprice+'</strong></td><td>'
-      +'<a href="#" class="btn btn-success btn-block" onClick="checkoutbtc();">Checkout <i class="fa fa-angle-right"></i></a></td></tr></tfoot>';
-
-    $('#data_cart_footer').append(fottor);
-    $("#p_count").text(count);
-  }
-</script>
 
 <header class="sticky-top navigation">
   
@@ -72,7 +7,7 @@ items = localStorage.getItem("itemsArray");
    
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="{{ site.BaseURL }}"><img class="img-fluid" src="{{ site.Params.logo | absURL }}" alt="{{ site.Title }}"></a>
+      <a class="navbar-brand" href="{{ site.BaseURL }}"><img class="img-fluid" src="{{ site.Params.logo | absURL }}" style="width: 143px;height:34px;" width="143" height="34" alt="{{ site.Title }}"></a>
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
         <i class="ti-menu"></i>
       </button>
@@ -99,7 +34,7 @@ items = localStorage.getItem("itemsArray");
           </li>
           {{ else }}
           <li class="nav-item">
-            <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name }}</a>
+            <a class="nav-link" id="none{{ .Name }}" href="{{ .URL | absURL }}">{{ .Name }}</a>
           </li>
           {{ end }}
           {{ end }}
@@ -115,50 +50,13 @@ items = localStorage.getItem("itemsArray");
     </nav>
   </div>
 </header>
+<style>
+        .titlealign {
+        vertical-align: middle;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+</style>
 
-
-
-
-<script>
-
-  
-   
-  // Bind to events
-  // netlifyIdentity.on('init', user => console.log('init', user));
-  function account()
-  {
-    
-    netlifyIdentity.open('login');
-  }
-  // var span_Text = document.getElementById("loginaccount");
-   
-      
-    </script>
-
-
-<script>
-  function add_delete(id,o){
-
-    var p=o.parentNode.parentNode;
-         p.parentNode.removeChild(p);
-    var json = JSON.parse(localStorage["itemsArray"]);
-    
-for (i=0;i<json.length;i++){
-
-            if (json[i].id == id)
-            {
-              var price = parseInt(json[i].price * json[i].quantity)
-            toprice = parseInt(toprice-price);
-fottor = '<tfoot><tr class="visible-xs"><td class="text-center"><strong>Total '+toprice+'</strong></td></tr><tr><td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td><td colspan="2" class="hidden-xs"></td><td class="hidden-xs text-center"><strong>Total '+toprice+'</strong></td><td><a href="#" class="btn btn-success btn-block" onClick="checkoutbtc();">Checkout <i class="fa fa-angle-right"></i></a></td></tr></tfoot>';
-$("#data_cart_footer tfoot").remove();
-$('#data_cart_footer').append(fottor);
-             json.splice(i,1);
-// localStorage["itemsArray"] = JSON.stringify(json);
-localStorage.setItem('itemsArray', JSON.stringify(json));
-            }
-            
-  }
-
-  }
-</script>
 {{ "<!-- /navigation -->" | safeHTML }}

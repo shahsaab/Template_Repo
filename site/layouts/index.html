@@ -1,3 +1,144 @@
 {{ define "main" }}
+<script src="/Controllers/homeController.js"></script>
+<!-- banner -->
+{{ if site.Data.homepage.banner.enable }}
+{{ with site.Data.homepage.banner }}
+
+<div id="slider_main_id" class="d-none">
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
+    <!--Indicators-->
+  
+    <!--/.Indicators-->
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+      <!--First slide-->
+      <div id="sliders_items_imgs">
+       
+        <!--/First slide-->
+        <!--Second slide-->
+        
+        <!--/Second slide-->
+        <!--Third slide-->
+        
+      </div>
+      
+      <!--/Third slide-->
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+  </div>
+</div>
+  <!--/.Carousel Wrapper-->
+{{ end }}
+{{ end }}
+<!-- /banner -->
+
+<!-- products -->
+{{ if site.Data.homepage.products.enable }}
+
+<section class="section pb-0">
+  <div class="container">
+    <div class="col-12 text-center mb-4">
+      <div class="row">
+        <div class="col-lg-9 col-sm-12 text-center mb-4">
+          <input id="myInput" type="text" name="search" placeholder="Search" class="hide form-control">
+        </div>
+        
+        <div class="col-lg-3 col-sm-12 text-center mb-4">
+        <select class="form-control" style="height: 100%;" id="pricerageallow" onchange="sort()">
+          <option disabled selected>Select price range</option>
+          <option value="byPrice">Select low to high</option>
+          <option value="byDistance">Select high to low</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    <style>
+      #myInput[type=text] {
+        width: 10px;
+        box-sizing: border-box;
+
+        border-radius: 4px;
+        font-size: 16px;
+
+        background-image: url('/images/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+      }
+
+      #myInput[type=text]:focus {
+        width: 100%;
+      }
+
+      @media screen and (max-width: 800px) {
+        #myInput[type=text] {
+        width: 100%;
+      }
+}
+
+    </style>
+    
+ 
+    <div class="row" id="search">
+      
+      {{ range (where site.RegularPages "Type" "products") }}
+      <div class="col-lg-4 col-sm-6 mb-4 pricesrangeclass" data-price="{{ .Params.Price }}">
+        <div class="card border-0 text-center">
+          <a href="{{ .Permalink }}">
+            {{ range first 1 .Params.Images }}
+            <img src="{{ .image | absURL }}" alt="{{ .Title }}" height="230" class="card-img-top">
+            {{ end }}
+          </a>
+          <div class="card-body">
+            <a href="{{ .Permalink }}" class="h4 "><div class="titlealign text-center" title="{{ .Title }}">{{ .Title }}</div></a>
+            <p>{{ .Params.Category }}</p>
+            <div class="mb-4">
+            {{ if .Params.PriceBefore }}
+            
+              <s>PKR {{ .Params.PriceBefore }}</s>
+              {{ end }}
+              <span class="lead text-primary">PKR <span class="rangeprice">{{ .Params.Price }}</span></span>
+            </div>
+            <button class="btn btn-sm btn-outline-primary" id="modalActivate" data-item-id="{{ .Params.ProductID }}"
+            data-item-name="{{ .Title }}" {{ range first 1 .Params.Images }} data-item-image="{{ .image | absURL }}"
+            {{ end }} data-item-price="{{ .Params.Price }}" id="add_to_cart" data-item-url="{{ .Permalink }}"
+            data-item-description="{{ .Description }}"
+            onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
+            ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1)" title="PKR {{ .Params.Price }} ">
+            Add to cart
+          </button>
+          <span class="whatsappallow d-none">
+            <a href="#" id="whatsapp{{ .Params.ProductID }}" onclick="whatsapp('{{ .Params.ProductID }}','{{ .Title }}')" class="btn btn-sm btn-outline-primary" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 20px;"></i></a>
+          
+          </span>
+          
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+
+
+{{ end }}
+<!-- /products -->
+
+
+
 
 {{ end }}

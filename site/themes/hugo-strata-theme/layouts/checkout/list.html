@@ -1,0 +1,99 @@
+{{ define "main" }}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="row">
+        <div class="col-md-6">
+          <span>Biling </span>
+          <input id="uuid" hidden>
+          <span>Full name* </span>
+          <input placeholder="Full name" class="form-control" id="name">
+          <p id="errorname" style="color: red;"></p>
+          <span>Email </span>
+          <input placeholder="abc@gmail.com" id="emai" class="form-control" disabled>
+          <p id="erroremail" style="color: red;"></p>
+          <span>Phone* </span>
+          <input placeholder="+92" id="phone" class="form-control" onkeyup="phonevalidcheck()">
+          <p id="errorphone" style="color: red;"></p>
+          <span>Billing address* </span>
+          <input placeholder="" class="form-control" id="address">
+          <p id="errorbaddress" style="color: red;"></p>
+          <span>City* </span>
+          <br>
+          <select id="citys" onchange="onchacity()" class="form-control getcitys">
+            <option value="" disabled selected>select city</option>
+          </select>
+          <p id="errorcity" style="color: red;"></p>
+          <hr>
+          <input type="hidden" id="deliveypriceset" value="0">
+          <input type="hidden" id="cityidset" value="0">
+          <span hidden>Country* </span>
+          <input placeholder="" id="country" value="Pakistan" hidden>
+          <span hidden>Province/State* </span>
+          <input placeholder="" id="province" value="null" hidden>
+          <label><input type="checkbox" onchange="valueChanged()" class="form-input" id="shippingtrue"> Ship to a
+            different
+            address?</label>
+
+          <div id="shippinghidediv" style="display: none;">
+            <span>Full name* </span>
+            <input placeholder="" id="s_name" class="form-control">
+            <p id="error_s_name" style="color: red;"></p>
+            <span>Shipping address* </span>
+            <input placeholder="" id="s_address" class="form-control">
+            <p id="error_s_address" style="color: red;"></p>
+            <span>City* </span>
+            <br>
+
+            <select id="s_citys" onchange="onchacity()" class="form-control getcitys">
+              <option disabled selected data-cityid="0" value="" data-miniorder="0" data-price="0">
+                select city</option>
+            </select>
+            <p id="error_s_citys" style="color: red;"></p>
+            <span hidden>Country* </span>
+            <input placeholder="" id="s_country" value="Pakistan" hidden>
+            <span hidden>Province/State* </span>
+            <input placeholder="" id="s_province" value="" hidden>
+          </div>
+        </div>
+        <div class="col-md-6">
+
+          <div class="card" style="border-color:#5ab51e;">
+            <div class="card-header">Order Summary <p id="count" class="pull-right"></p>
+            </div>
+            <div class="card-body">
+
+              <div id="tablaa" style="height:250px;overflow-y: auto; overflow-x:hidden"></div>
+              <hr>
+              <div class="row lower">
+                <div class="col text-left">Subtotal</div>
+                <div class="col text-right">PKR: <span id="subtotle"></span></div>
+              </div>
+              <div class="row lower">
+                <div class="col text-left">Delivery</div>
+                <div class="col text-right" id="delivery_price">0</div>
+              </div>
+              <div class="row lower">
+                <div class="col text-left"><b>Total to pay</b></div>
+                <div class="col text-right">PKR: <span id="sutotle"></span><b></b></div>
+              </div>
+              <br>
+              
+              <button class="btn btn-outline-primary pull-right" onclick="validate()">Place order</button>
+              <br><br><br>
+              <p class="text-muted text-center">Complimentary Shipping & Returns</p>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+  <script src="/Controllers/checkoutController.js"></script>
+  {{ end }}
